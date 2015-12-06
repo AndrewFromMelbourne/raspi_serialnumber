@@ -97,7 +97,7 @@ int main(void)
 
         if (strcasecmp("Serial", key) == 0)
         {
-            serial = strtol(value, NULL, 16);
+            serial = strtoul(value, NULL, 16);
         }
     }
 
