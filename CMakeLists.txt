@@ -19,6 +19,10 @@ add_executable(serialnumber_cpuinfo serialnumber_cpuinfo.c)
 
 #--------------------------------------------------------------------------
 
+add_executable(serialnumber_sysfs serialnumber_sysfs.c)
+
+#--------------------------------------------------------------------------
+
 add_executable(serialnumber_mailbox serialnumber_mailbox.c)
 
 #--------------------------------------------------------------------------

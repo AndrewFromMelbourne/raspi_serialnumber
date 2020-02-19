@@ -2,7 +2,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Andrew Duncan
+// Copyright (c) 2020 Andrew Duncan
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -33,72 +33,24 @@
 #include <string.h>
 
 //-----------------------------------------------------------------------
-//
-// Remove leading and trailing whitespace from a string.
-
-static char *
-trimWhiteSpace(
-    char *string)
-{
-    if (string == NULL)
-    {
-        return NULL;
-    }
-
-    while (isspace(*string))
-    {
-        string++;
-    }
-
-    if (*string == '\0')
-    {
-        return string;
-    }
-
-    char *end = string;
-
-    while (*end)
-    {
-        ++end;
-    }
-    --end;
-
-    while ((end > string) && isspace(*end))
-    {
-        end--;
-    }
-
-    *(end + 1) = 0;
-    return string;
-}
-
-//-----------------------------------------------------------------------
 
 int main(void)
 {
     uint32_t serial = 0;
 
-    FILE *fp = fopen("/proc/cpuinfo", "r");
+    FILE *fp = fopen("/sys/firmware/devicetree/base/serial-number", "r");
 
     if (fp == NULL)
     {
-        perror("/proc/cpuinfo");
+        perror("/sys/firmware/devicetree/base/serial-number");
         exit(EXIT_FAILURE);
     }
 
-    char entry[80];
+    char value[80];
 
-    while (fgets(entry, sizeof(entry), fp) != NULL)
+    if (fgets(value, sizeof(value), fp) != NULL)
     {
-        char* saveptr = NULL;
-
-        char *key = trimWhiteSpace(strtok_r(entry, ":", &saveptr));
-        char *value = trimWhiteSpace(strtok_r(NULL, ":", &saveptr));
-
-        if (strcasecmp("Serial", key) == 0)
-        {
-            serial = strtoul(value, NULL, 16);
-        }
+        serial = strtoul(value, NULL, 16);
     }
 
     fclose(fp);

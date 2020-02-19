@@ -5,6 +5,10 @@ This repository contains example C code to retrieve the Raspberry Pi Serial Numb
 
 Read the serial number from /proc/cpuinfo
 
+# serialnumber_sysfs.c
+
+Read the serial number from /sys/firmware/devicetree/base/serial-number
+
 # serialnumber_mailbox.c
 
 Get the serial number using the Raspberry Pi Mailbox interface
