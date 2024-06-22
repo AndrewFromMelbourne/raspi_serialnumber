@@ -21,6 +21,9 @@ add_executable(serialnumber_mailbox serialnumber_mailbox.c)
 
 #--------------------------------------------------------------------------
 
-add_executable(serialnumber_vcgencmd serialnumber_vcgencmd.c)
-target_link_libraries(serialnumber_vcgencmd bcm_host)
+add_executable(serialnumber_vcgencmd_using_bcm_host serialnumber_vcgencmd_using_bcm_host.c)
+target_link_libraries(serialnumber_vcgencmd_using_bcm_host bcm_host)
 
+#--------------------------------------------------------------------------
+
+add_executable(serialnumber_vcgencmd_via_ioctl serialnumber_vcgencmd_via_ioctl.c)

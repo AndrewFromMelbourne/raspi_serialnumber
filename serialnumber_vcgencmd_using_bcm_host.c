@@ -51,7 +51,7 @@ int main(void)
         char *saveptr = NULL;
         char *token = strtok_r(response, "\n", &saveptr);
 
-        while (token != NULL)
+        while ((serial == 0) && (token != NULL))
         {
             int index;
             char value[100];
@@ -59,6 +59,10 @@ int main(void)
             if (sscanf(token, "%d:%s", &index, value) == 2)
             {
                 if (index == 28)
+                {
+                    serial = strtoul(value, 0, 16);
+                }
+                else if ((serial == 0) && (index == 31))
                 {
                     serial = strtoul(value, 0, 16);
                 }
