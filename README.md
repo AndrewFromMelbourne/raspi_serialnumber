@@ -13,9 +13,13 @@ Read the serial number from /sys/firmware/devicetree/base/serial-number
 
 Get the serial number using the Raspberry Pi Mailbox interface
 
-# serialnumber_vcgencmd.c
+# serialnumber_vcgencmd_using_bcm_host.c
 
-Get the serial number using libbcm_host
+Get the serial number using vcgencmd using libbcm_host
+
+# serialnumber_vcgencmd_via_ioctl.c
+
+Get the serial number using vcgencmd using ioctl
 
 # build
 
